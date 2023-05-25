@@ -1,0 +1,28 @@
+name: Docker Build
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  docker-build-push:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v2
+      - name: Extract version from pom.xml
+        id: version
+        run: echo "::set-output name=version::$(grep -A 1 \"<artifactId>outbound</artifactId>\" pom.xml | grep -oP '(?<=<version>).*?(?=</version>)')"
+      - name: Login to DockerHub Registry
+        run: echo ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin  
+      - name: Build the tagged Docker image
+        env:
+          RELEASE_VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          echo $RELEASE_VERSION
+          echo ${{ steps.version.outputs.version }}
+          docker build . --file Dockerfile --build-arg username=${{ secrets.GH_USERNAME }} --build-arg token=${{ secrets.GH_TOKEN }} --tag samagragovernance/outbound:${{ steps.version.outputs.version }}
+      - name: Push the tagged Docker image
+        env:
+          RELEASE_VERSION: ${{ steps.version.outputs.version }}
+        run: docker push ryanwalker277/uci-apis:SNAPSHOT-$RELEASE_VERSION
