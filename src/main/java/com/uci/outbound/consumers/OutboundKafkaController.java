@@ -22,10 +22,8 @@ import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 import reactor.kafka.receiver.ReceiverRecord;
 
-import javax.xml.bind.JAXBException;
 import java.io.ByteArrayInputStream;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.function.Consumer;
 
 @Component
@@ -146,10 +144,8 @@ public class OutboundKafkaController {
                                 try {
                                     log.error("The current XMessage was : " + xMessage.toString());
                                 } catch (Exception ge) {
-                                    ge.printStackTrace();
                                     log.error("Unable to parse the current XMessage : " + ge.getMessage() + " Xmessage : " + ge.getMessage());
                                 }
-                                e.printStackTrace();
                             }
                         } else {
                             log.info("XMessage -> app is empty");
