@@ -14,7 +14,7 @@ jobs:
       - name: Extract version from pom.xml
         id: version
         run: |
-          echo "::set-output name=version::$(grep -A 1 '<artifactId>outbound</artifactId>' pom.xml | grep -oP '(?<=<version>).*?(?=</version>)')"}
+          echo "::set-env name=VERSION::$(grep -A 1 '<artifactId>outbound</artifactId>' pom.xml | grep -oP '(?<=<version>).*?(?=</version>)')"
       # - name: Set up Docker Buildx
       #   uses: docker/setup-buildx-action@v2
       # - name: Log in to Docker Hub
