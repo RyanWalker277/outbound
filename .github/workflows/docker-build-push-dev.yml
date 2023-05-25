@@ -13,7 +13,9 @@ jobs:
         uses: actions/checkout@v3
       - name: Extract version from pom.xml
         id: version
-        run: grep -A 1 "<artifactId>outbound</artifactId>" pom.xml | grep -oP '(?<=<version>).*?(?=</version>)'
+        run: version= "grep -A 1 "<artifactId>outbound</artifactId>" pom.xml | grep -oP '(?<=<version>).*?(?=</version>)'"
+             echo "Output [$version]"
+             echo "version=$version" >> $GITHUB_OUTPUT               
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
       - name: Log in to Docker Hub
@@ -44,4 +46,4 @@ jobs:
       #       token=${{ secrets.GH_TOKEN }}
       - name: test
         run: |
-          echo ${{ steps.version.outputs.stdout }}
+          echo ${{join(steps.version.outputs.*, '\n')}}
