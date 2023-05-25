@@ -32,13 +32,16 @@ jobs:
       #   env:
       #     RELEASE_VERSION: ${{ steps.version.outputs.version }}
       #   run: docker push ryanwalker277/uci-apis:SNAPSHOT-$RELEASE_VERSION
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v2
-        run: echo ${{ steps.version.outputs.stdout }}
-        with:
-          context: "."
-          push: true
-          tags: ryanwalker277/uci-apis:SNAPSHOT-${{ steps.version.outputs.stdout }}
-          build-args: |
-            username=${{ secrets.GH_USERNAME }},
-            token=${{ secrets.GH_TOKEN }}
+      
+      # - name: Build and push Docker image
+      #   uses: docker/build-push-action@v2
+      #   with:
+      #     context: "."
+      #     push: true
+      #     tags: ryanwalker277/uci-apis:SNAPSHOT-${{ steps.version.outputs.stdout }}
+      #     build-args: |
+      #       username=${{ secrets.GH_USERNAME }},
+      #       token=${{ secrets.GH_TOKEN }}
+      - name: test
+        run: |
+          echo ${{ steps.version.outputs.version }}
