@@ -44,5 +44,5 @@ jobs:
       #       username=${{ secrets.GH_USERNAME }},
       #       token=${{ secrets.GH_TOKEN }}
       - name: test
-        run: |
-          echo ${{ steps.version.outputs.stdout }}
+        run: echo $VERSION
+        
