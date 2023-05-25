@@ -27,7 +27,7 @@ jobs:
         with:
           context: "."
           push: true
-          tags: ryanwalker277/uci-apis:SNAPSHOT-${{ steps.version.outputs.stdout }}
+          tags: ryanwalker277/uci-apis:SNAPSHOT-${{ steps.version.outputs.VERSION }}
           build-args: |
             username=${{ secrets.GH_USERNAME }},
             token=${{ secrets.GH_TOKEN }}
