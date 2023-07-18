@@ -127,10 +127,12 @@ public class MessageController {
                             /* FCM token required check for firebase adapter */
                             if(adapter.path("channel").asText().equalsIgnoreCase("web")
                                     &&  adapter.path("provider").asText().equalsIgnoreCase("firebase")
-                                    && (request.getTo().getMeta() == null || request.getTo().getMeta().get("fcmToken") == null || request.getTo().getMeta().get("fcmToken").isEmpty())) {
+//                                    && (request.getTo().getMeta() == null || request.getTo().getMeta().get("fcmToken") == null || request.getTo().getMeta().get("fcmToken").isEmpty())
+                                    && (request.getPayload().getData() != null && request.getPayload().getData().size() > 0)
+                                    ) {
                                 response.setStatus(HttpStatus.BAD_REQUEST.value());
                                 response.setError(HttpStatus.BAD_REQUEST.getReasonPhrase());
-                                response.setMessage("FCM token in meta of to is required for firebase adapter messaging.");
+                                response.setMessage("FCM token in data of payload is required for firebase adapter messaging.");
                                 return Mono.just(ResponseEntity.badRequest().body(response));
                             }
 

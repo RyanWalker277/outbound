@@ -150,7 +150,7 @@ public class NotificationConsumerReactive {
 
                                 if (provider.toLowerCase().equals("firebase") && channel.toLowerCase().equals("web")) {
                                     notificationCount++;
-                                    log.info("NotificationConsumerReactive:Notification Insert Record in Cass : " + notificationCount);
+                                    log.info("NotificationConsumerReactive:Notification Insert Record in Cass : BotId : " + xMessageDAO.getBotUuid() + " count: " + notificationCount);
 //                                    logTimeTaken(startTime, 0, "NotificationConsumerReactive:Notification Insert Record in Cass : " + notificationCount + " ::: process-end: %d ms");
                                 } else {
                                     otherCount++;
