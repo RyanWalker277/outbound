@@ -35,4 +35,4 @@ WORKDIR $HOME
 COPY --from=build $HOME/target/*.jar app.jar
 
 EXPOSE 8080
-ENTRYPOINT ["java","-Xmx1024m","-Xshareclasses","-XX:+CMSClassUnloadingEnabled","-XX:+UseG1GC","-XX:+ExplicitGCInvokesConcurrent","-jar","app.jar"]
+ENTRYPOINT ["java","-Xmx4096m","-Xshareclasses","-XX:+CMSClassUnloadingEnabled","-XX:+UseG1GC","-XX:+ExplicitGCInvokesConcurrent","-jar","app.jar"]
