@@ -11,15 +11,15 @@
 	</parent>
 	<groupId>com.uci</groupId>
 	<artifactId>outbound</artifactId>
-	<version>2.2.11</version>
+	<version>2.2.12</version>
 	<name>outbound</name>
 	<description>outbound</description>
 
 	<properties>
 		<java.version>11</java.version>
-		<utils.version>2.2.6</utils.version>
-		<dao.version>2.2.6</dao.version>
-		<adapter.version>2.2.6</adapter.version>
+		<utils.version>2.2.7</utils.version>
+		<dao.version>2.2.7</dao.version>
+		<adapter.version>2.2.7</adapter.version>
 	</properties>
 
 	<!-- For Downloading repositories from github packages -->
